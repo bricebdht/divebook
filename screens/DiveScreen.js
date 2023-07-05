@@ -1,6 +1,7 @@
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { Button, Text, TextInput, View } from "react-native";
+import DatabaseService from "../services/DatabaseService";
 
 const DiveScreen = () => {
   const [depth, setDepth] = useState("");
@@ -21,6 +22,16 @@ const DiveScreen = () => {
       tankVolume,
       tankMaterial
     );
+    DatabaseService.createTables();
+    DatabaseService.addDive(
+      depth,
+      temperature,
+      weight,
+      wetsuitThickness,
+      tankVolume,
+      tankMaterial
+    );
+    DatabaseService.getDives();
   };
 
   return (
