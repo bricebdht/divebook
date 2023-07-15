@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Button, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
+import "./styles.scss";
 
 const Menu = () => {
   const navigation = useNavigation();
@@ -17,8 +18,20 @@ const Menu = () => {
     navigation.navigate("Profile");
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      display: "flex",
+      justifyContent: "space-around",
+      flexDirection: "row",
+      height: 150,
+      width: 300,
+      backgroundColor: "yellow",
+      padding: 20,
+    },
+  });
+
   return (
-    <View>
+    <View style={styles.container}>
       <Button title="Page Dive" onPress={handleNavigateToDive} />
       <Button title="Page Site" onPress={handleNavigateToSite} />
       <Button title="Page Profil" onPress={handleNavigateToProfile} />
