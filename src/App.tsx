@@ -1,4 +1,3 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import DiveScreen from './screens/DiveScreen';
@@ -15,12 +14,10 @@ const styles = StyleSheet.create({
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <DiveScreen />
-        <ProfileScreen />
-        <SiteScreen />
-      </View>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <DiveScreen />
+      <ProfileScreen />
+      <SiteScreen />
+    </View>
   );
 }
