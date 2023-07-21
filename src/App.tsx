@@ -1,8 +1,8 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import DiveScreen from './screens/DiveScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SiteScreen from './screens/SiteScreen';
+import Menu from './components/Menu';
+import AppNavigation from './navigation/AppNavigation';
 
 const styles = StyleSheet.create({
   container: {height: '100%'},
@@ -14,10 +14,11 @@ const styles = StyleSheet.create({
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <DiveScreen />
-      <ProfileScreen />
-      <SiteScreen />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <AppNavigation />
+        <Menu />
+      </View>
+    </NavigationContainer>
   );
 }
