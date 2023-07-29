@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Button, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Map from '../assets/map.svg';
 import DiveScreen from '../screens/DiveScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -35,17 +35,14 @@ const AppNavigation = () => {
       paddingVertical: 10,
     },
     button: {width: 40, height: 40},
+    icon: {width: 30, height: 20},
   });
 
   return (
     <View>
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => setScreen('Dives')}>
-          <Image
-            source={require('../assets/scuba_diving.png')}
-            style={{width: 24, height: 24, marginRight: 8}}
-          />
-          <Map />
+          <Map width={styles.icon.width} />
         </TouchableOpacity>
         <Button title="Sites" onPress={() => setScreen('Sites')} />
         <Button title="Profile" onPress={() => setScreen('Profile')} />
