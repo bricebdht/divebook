@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import Map from '../assets/map.svg';
 import DiveScreen from '../screens/DiveScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SiteScreen from '../screens/SiteScreen';
@@ -44,6 +45,7 @@ const AppNavigation = () => {
             source={require('../assets/scuba_diving.png')}
             style={{width: 24, height: 24, marginRight: 8}}
           />
+          <Map />
         </TouchableOpacity>
         <Button title="Sites" onPress={() => setScreen('Sites')} />
         <Button title="Profile" onPress={() => setScreen('Profile')} />
