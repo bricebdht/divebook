@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import DiveCard from '../components/DiveCard';
 
 const DiveScreen = () => {
   const [depth, setDepth] = useState('');
@@ -20,6 +21,7 @@ const DiveScreen = () => {
 
   return (
     <View>
+      <DiveCard />
       <Text style={styles.text}>Page d'ajout de plongées</Text>
       <TextInput
         style={styles.input}

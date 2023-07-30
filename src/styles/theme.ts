@@ -4,9 +4,11 @@ export const globalStyles: {
   secondaryColor: string;
   borderColor: string;
   fontFamily: string;
+  fontColor: string;
 } = {
   primaryColor: '#1F448B',
   secondaryColor: '#D7A700',
-  borderColor: '11F448B',
-  fontFamily: 'Arial, sans-serif',
+  borderColor: '#d8d8d8',
+  fontFamily: 'Roboto',
+  fontColor: '#2b2b2b',
 };
