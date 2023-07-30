@@ -31,12 +31,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const DiveCard = () => {
+const DiveCard: React.FC<{depth: number; duration: number}> = ({
+  depth,
+  duration,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.dataContainer}>
-        <Text style={styles.importantText}>36m</Text>
-        <Text style={styles.simpleText}>40 min</Text>
+        <Text style={styles.importantText}>{depth}m</Text>
+        <Text style={styles.simpleText}>{duration} min</Text>
       </View>
       <View style={styles.dataContainer}>
         <Text style={styles.importantText}>Cap Caveaux</Text>
