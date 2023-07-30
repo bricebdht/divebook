@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import AddCircle from '../assets/add_circle.svg';
 import DiveCard from '../components/DiveCard';
 import AddDiveScreen from './AddDiveScreen';
 
@@ -30,7 +31,8 @@ const DiveScreen = () => {
   return (
     <View>
       <TouchableOpacity onPress={() => setScreen('AddDive')}>
-        <Text>Add dive</Text>
+        <AddCircle />
+        <Text>New dive</Text>
       </TouchableOpacity>
       {renderScreen()}
     </View>
