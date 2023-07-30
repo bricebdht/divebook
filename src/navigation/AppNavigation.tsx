@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Account from '../assets/account.svg';
+import AccountActive from '../assets/account_active.svg';
 import Home from '../assets/home.svg';
+import HomeActive from '../assets/home_active.svg';
 import Map from '../assets/map.svg';
+import MapActive from '../assets/map_active.svg';
 import ScubaDiving from '../assets/scuba_diving.svg';
+import ScubaDivingActive from '../assets/scuba_diving_active.svg';
 import DiveScreen from '../screens/DiveScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SiteScreen from '../screens/SiteScreen';
@@ -11,6 +15,34 @@ import {globalStyles} from '../styles/theme';
 
 const AppNavigation = () => {
   const [screen, setScreen] = useState('Dives');
+
+  const getHomeIcon = () => {
+    if (screen === 'Home') {
+      return <HomeActive width={styles.icon.width} />;
+    }
+    return <Home width={styles.icon.width} />;
+  };
+
+  const getDiveIcon = () => {
+    if (screen === 'Dives') {
+      return <ScubaDivingActive width={styles.icon.width} />;
+    }
+    return <ScubaDiving width={styles.icon.width} />;
+  };
+
+  const getMapIcon = () => {
+    if (screen === 'Sites') {
+      return <MapActive width={styles.icon.width} />;
+    }
+    return <Map width={styles.icon.width} />;
+  };
+
+  const getProfileIcon = () => {
+    if (screen === 'Profile') {
+      return <AccountActive width={styles.icon.width} />;
+    }
+    return <Account width={styles.icon.width} />;
+  };
 
   const renderScreen = () => {
     switch (screen) {
@@ -58,22 +90,22 @@ const AppNavigation = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => setScreen('Dives')}>
-          <Home width={styles.icon.width} />
+          {getHomeIcon()}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => setScreen('Dives')}>
-          <ScubaDiving width={styles.icon.width} />
+          {getDiveIcon()}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => setScreen('Sites')}>
-          <Map width={styles.icon.width} />
+          {getMapIcon()}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => setScreen('Profile')}>
-          <Account width={styles.icon.width} />
+          {getProfileIcon()}
         </TouchableOpacity>
       </View>
     </View>
