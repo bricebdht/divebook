@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import AddCircle from '../assets/add_circle.svg';
-import DiveCard from '../components/DiveCard';
+import ArrowBack from '../assets/arrow_back.svg';
+import {globalStyles} from '../styles/theme';
 import AddDiveScreen from './AddDiveScreen';
+import DiveListScreen from './DiveListScreen';
 
 const DiveScreen = () => {
   const [screen, setScreen] = useState('DivesList');
@@ -10,30 +12,62 @@ const DiveScreen = () => {
   const renderScreen = () => {
     switch (screen) {
       case 'DivesList':
-        return (
-          <View>
-            <DiveCard depth={59} duration={20} />
-            <DiveCard depth={35} duration={45} />
-          </View>
-        );
+        return <DiveListScreen />;
       case 'AddDive':
         return <AddDiveScreen />;
       default:
-        return (
-          <View>
-            <DiveCard depth={59} duration={20} />
-            <DiveCard depth={35} duration={45} />
-          </View>
-        );
+        return <DiveListScreen />;
     }
   };
 
+  const styles = StyleSheet.create({
+    topMenu: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginHorizontal: 10,
+      marginVertical: 10,
+    },
+    menuTitle: {
+      color: globalStyles.fontColor,
+      fontSize: 26,
+      fontWeight: 'bold',
+    },
+    menuLeftElements: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    icon: {
+      width: 35,
+    },
+    backIcon: {
+      marginRight: 20,
+    },
+  });
+
   return (
     <View>
-      <TouchableOpacity onPress={() => setScreen('AddDive')}>
-        <AddCircle />
-        <Text>New dive</Text>
-      </TouchableOpacity>
+      {screen === 'DivesList' ? (
+        <View style={styles.topMenu}>
+          <Text style={styles.menuTitle}>Dives</Text>
+          <TouchableOpacity onPress={() => setScreen('AddDive')}>
+            <AddCircle width={styles.icon.width} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.topMenu}>
+          <View style={styles.menuLeftElements}>
+            <TouchableOpacity
+              style={styles.backIcon}
+              onPress={() => setScreen('DivesList')}>
+              <ArrowBack width={styles.icon.width} />
+            </TouchableOpacity>
+            <Text style={styles.menuTitle}>New dive</Text>
+          </View>
+        </View>
+      )}
       {renderScreen()}
     </View>
   );

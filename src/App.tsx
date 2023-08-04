@@ -2,11 +2,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import AppNavigation from './navigation/AppNavigation';
+import {globalStyles} from './styles/theme';
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
+    backgroundColor: globalStyles.backgroundColor,
   },
 });
 
