@@ -68,6 +68,7 @@ const CustomInput: React.FC<{
         placeholder={placeholder}
         placeholderTextColor="grey"
         keyboardType={keyboardType}
+        onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}
         onChangeText={newValue => handleInputChange(newValue)}
