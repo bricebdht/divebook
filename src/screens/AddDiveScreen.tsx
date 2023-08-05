@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
+import LocationOn from '../assets/location_on.svg';
+import CustomInput from '../components/CustomInput';
 
 const styles = StyleSheet.create({
   text: {color: 'black'},
@@ -23,33 +18,39 @@ const styles = StyleSheet.create({
 const AddDiveScreen = () => {
   const [depth, setDepth] = useState('');
   const [duration, setDuration] = useState('');
+  const [weight, setWeight] = useState('');
+
   const [tankMaterial, setTankMaterial] = useState('steel');
 
   const handleSubmit = () => {
     console.log('--------- Form submitted -----------');
-    console.log(depth, duration, tankMaterial);
+    console.log(depth, duration, weight, tankMaterial);
   };
 
   return (
     <View>
-      <Text>Page d'ajout de plongées</Text>
-      <TextInput
-        style={styles.input}
+      <CustomInput
         placeholder="Depth"
-        placeholderTextColor="grey"
-        value={depth}
-        onChangeText={text => setDepth(text)}
+        suffix="m"
         keyboardType="numeric"
+        onInputChange={text => setDepth(text)}
       />
-      <TextInput
-        style={styles.input}
+      <CustomInput
         placeholder="Duration"
-        placeholderTextColor="grey"
-        value={duration}
-        onChangeText={text => setDuration(text)}
+        suffix="min"
         keyboardType="numeric"
+        onInputChange={text => setDuration(text)}
       />
-      <View>
+      <CustomInput
+        placeholder="Weight"
+        suffix="kg"
+        keyboardType="numeric"
+        onInputChange={text => setWeight(text)}
+      />
+      <CustomInput placeholder="Test" />
+      <CustomInput placeholder="Site" icon={<LocationOn width={25} />} />
+
+      {/* <View>
         <TouchableOpacity
           onPress={() => {
             setTankMaterial('aluminum');
@@ -62,7 +63,7 @@ const AddDiveScreen = () => {
           }}>
           <Text style={styles.text}>Steel</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
       <Button title="Submit" onPress={handleSubmit} />
     </View>
   );
