@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const DiveCard: React.FC<{depth: number; duration: number}> = ({
-  depth,
-  duration,
-}) => {
+const DiveCard: React.FC<{
+  depth: number;
+  duration: number;
+}> = ({depth, duration}) => {
   return (
     <View style={styles.container}>
       <View style={styles.dataContainer}>

@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   },
   input: {
     color: 'white',
-    flex: 9,
+    flex: 7,
     marginHorizontal: 5,
   },
-  suffix: {color: 'white', flex: 1},
+  suffix: {color: 'white', flex: 2, textAlign: 'right'},
   focused: {borderColor: 'white'},
 });
 
@@ -34,7 +34,15 @@ const CustomInput: React.FC<{
   icon?: React.ReactNode;
   keyboardType?: KeyboardType;
   onInputChange?: (value: SetStateAction<string>) => void;
-}> = ({placeholder, suffix, icon, keyboardType = 'default', onInputChange}) => {
+  externalStyle?: {};
+}> = ({
+  placeholder,
+  suffix,
+  icon,
+  keyboardType = 'default',
+  onInputChange,
+  externalStyle = {},
+}) => {
   const textInputRef = useRef<TextInput>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
@@ -59,7 +67,7 @@ const CustomInput: React.FC<{
 
   return (
     <TouchableOpacity
-      style={[styles.container, isFocused ? styles.focused : {}]}
+      style={[styles.container, externalStyle, isFocused ? styles.focused : {}]}
       onPress={handleFocus}>
       {icon ? icon : null}
       <TextInput
