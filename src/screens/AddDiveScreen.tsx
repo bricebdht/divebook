@@ -1,7 +1,9 @@
+import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import React, {useState} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import LocationOn from '../assets/location_on.svg';
 import CustomInput from '../components/CustomInput';
+import SelectModal from '../components/SelectModal';
 
 const styles = StyleSheet.create({
   row: {
@@ -20,12 +22,39 @@ const AddDiveScreen = () => {
   const [duration, setDuration] = useState('');
   const [weight, setWeight] = useState('');
   const [temperature, setTemperature] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   const [tankMaterial, setTankMaterial] = useState('steel');
 
+  const onChange = (event, selectedDate) => {
+    console.log('event', event);
+    console.log('selectedDate', selectedDate);
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
+
+  const showMode = currentMode => {
+    console.log('mode', currentMode);
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+      is24Hour: true,
+    });
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
   const handleSubmit = () => {
     console.log('--------- Form submitted -----------');
-    console.log(depth, duration, weight, tankMaterial);
+    console.log(depth, duration, weight, tankMaterial, date);
   };
 
   return (
@@ -72,6 +101,14 @@ const AddDiveScreen = () => {
           externalStyle={styles.input}
         />
       </View>
+
+      <SafeAreaView>
+        <Button onPress={showDatepicker} title="Show date picker!" />
+        <Button onPress={showTimepicker} title="Show time picker!" />
+        <Text>selected: {date.toLocaleString()}</Text>
+      </SafeAreaView>
+
+      <SelectModal options={['aluminum', 'steel']} />
 
       {/* <CustomInput
         placeholder="Weight"
