@@ -48,14 +48,11 @@ const AddDiveScreen = () => {
   const [tankMaterial, setTankMaterial] = useState('steel');
 
   const onChange = (event, selectedDate) => {
-    console.log('event', event);
-    console.log('selectedDate', selectedDate);
     const currentDate = selectedDate;
     setDate(currentDate);
   };
 
   const showMode = currentMode => {
-    console.log('mode', currentMode);
     DateTimePickerAndroid.open({
       value: date,
       onChange,
@@ -78,7 +75,7 @@ const AddDiveScreen = () => {
   };
 
   const getFormattedDate = () => {
-    return new Intl.DateTimeFormat('fr-FR').format(this.date);
+    return new Intl.DateTimeFormat('fr-FR').format(date);
   };
 
   const getFormattedTime = () => {
@@ -87,7 +84,7 @@ const AddDiveScreen = () => {
       minute: 'numeric',
       second: 'numeric',
     };
-    return new Intl.DateTimeFormat('fr-FR', options).format(this.date);
+    return new Intl.DateTimeFormat('fr-FR', options).format(date);
   };
 
   return (
