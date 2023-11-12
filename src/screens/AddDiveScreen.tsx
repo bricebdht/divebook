@@ -1,6 +1,15 @@
 import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import React, {useState} from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Calendar from '../assets/calendar.svg';
+import Clock from '../assets/clock.svg';
 import LocationOn from '../assets/location_on.svg';
 import CustomInput from '../components/CustomInput';
 import SelectModal from '../components/SelectModal';
@@ -14,6 +23,17 @@ const styles = StyleSheet.create({
   input: {
     margin: 7,
     flex: 1,
+  },
+  picker: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5,
+    margin: 7,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });
 
@@ -55,6 +75,19 @@ const AddDiveScreen = () => {
   const handleSubmit = () => {
     console.log('--------- Form submitted -----------');
     console.log(depth, duration, weight, tankMaterial, date);
+  };
+
+  const getFormattedDate = () => {
+    return new Intl.DateTimeFormat('fr-FR').format(this.date);
+  };
+
+  const getFormattedTime = () => {
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+    return new Intl.DateTimeFormat('fr-FR', options).format(this.date);
   };
 
   return (
@@ -103,9 +136,20 @@ const AddDiveScreen = () => {
       </View>
 
       <SafeAreaView>
-        <Button onPress={showDatepicker} title="Show date picker!" />
-        <Button onPress={showTimepicker} title="Show time picker!" />
-        <Text>selected: {date.toLocaleString()}</Text>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={showDatepicker} style={styles.picker}>
+            <Calendar width={25} />
+            <Text>{getFormattedDate()}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={showTimepicker} style={styles.picker}>
+            <Clock width={25} />
+            <Text>{getFormattedTime()}</Text>
+          </TouchableOpacity>
+
+          {/* <Button onPress={showDatepicker} title="Show date picker!" />
+          <Button onPress={showTimepicker} title="Show time picker!" />
+          <Text>selected: {date.toLocaleString()}</Text> */}
+        </View>
       </SafeAreaView>
 
       <SelectModal options={['aluminum', 'steel']} />

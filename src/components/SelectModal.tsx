@@ -2,10 +2,16 @@ import React, {useState} from 'react';
 import {Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({
-  modal: {
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    backgroundColor: 'blue',
     height: 300,
     width: 250,
-    backgroundColor: 'yellow',
+    borderRadius: 10,
   },
   buttonStyle: {
     height: 50,
@@ -22,18 +28,19 @@ const SelectModal: React.FC<{options: string[]}> = ({options}) => {
 
   return (
     <View>
-      <Text>Here</Text>
       <Modal
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}>
-        <View style={styles.modal}>
-          <Text>This is inside the modal</Text>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalView}>
+            <Text>This is inside the modal</Text>
+          </View>
         </View>
       </Modal>
-      <Text>Here is my new component</Text>
+
       <Pressable
         style={styles.buttonStyle}
         onPress={() => setModalVisible(true)}>
